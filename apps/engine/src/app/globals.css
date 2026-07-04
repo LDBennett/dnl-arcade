@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: theme("colors.arcade.bg");
+  color: theme("colors.arcade.cyan");
+}
+
+/* Keyboard-nav hint: desktop (precise pointer + hover) only — touch devices
+   have no keyboard to hint at. */
+.engine-keyboard-hint {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .engine-keyboard-hint {
+    display: block;
+  }
+}

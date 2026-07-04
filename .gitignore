@@ -1,0 +1,51 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next
+out
+
+# turborepo
+.turbo
+
+# build output
+dist
+build
+
+# testing
+coverage
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# env
+.env
+.env*.local
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# vercel
+.vercel
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# session workflow
+session_summary.md
+docs/
+.claude/
+
+CLAUDE.md
