@@ -14,9 +14,10 @@ export interface TerminalGridProps {
 }
 
 export function TerminalGrid({ candidates, attempts, status, onSubmitGuess }: TerminalGridProps) {
+  const isInteractive = status === "in-progress";
   const { focusedIndex, setFocusedIndex, registerItemRef, handleKeyDown } = useRovingGridFocus<
     HTMLButtonElement
-  >({ itemCount: candidates.length, columns: COLUMNS });
+  >({ itemCount: candidates.length, columns: COLUMNS, isActive: isInteractive });
 
   const latestAttemptByCandidate = useMemo(() => {
     const map = new Map<string, Attempt>();
@@ -25,8 +26,6 @@ export function TerminalGrid({ candidates, attempts, status, onSubmitGuess }: Te
     }
     return map;
   }, [attempts]);
-
-  const isInteractive = status === "in-progress";
 
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4" role="grid">

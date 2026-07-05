@@ -3,7 +3,7 @@
 export function KeyboardHint() {
   return (
     <p className="engine-keyboard-hint text-xs text-arcade-purple">
-      &uarr;&darr;&larr;&rarr; or WASD to move &middot; Enter to select
+      &uarr;&darr;&larr;&rarr; or WASD to move &middot; Enter to select &middot; Esc to go back
     </p>
   );
 }

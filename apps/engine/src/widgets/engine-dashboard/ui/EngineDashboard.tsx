@@ -1,7 +1,7 @@
 "use client";
 
 import { GameCard, gamesRoster } from "@/entities/game";
-import { KeyboardHint, useRovingGridFocus } from "@/shared";
+import { KeyboardHint, useEscapeKey, useRovingGridFocus } from "@/shared";
 
 const COLUMNS = 2;
 
@@ -9,6 +9,13 @@ export function EngineDashboard() {
   const { focusedIndex, setFocusedIndex, registerItemRef, handleKeyDown } = useRovingGridFocus<
     HTMLAnchorElement
   >({ itemCount: gamesRoster.length, columns: COLUMNS });
+
+  // The dashboard is the engine app's root, so Escape here has nowhere left
+  // to go but out to the lobby. That's a different Multi-Zone app, so it
+  // needs a hard navigation rather than next/link's client-side routing.
+  useEscapeKey(() => {
+    window.location.href = "/";
+  });
 
   return (
     <div className="p-8">

@@ -1,5 +1,7 @@
 export { BackToMenuLink } from "./ui/BackToMenuLink";
 export { KeyboardHint } from "./ui/KeyboardHint";
+export { useAutoFocus } from "./lib/useAutoFocus";
+export { useEscapeKey } from "./lib/useEscapeKey";
 export { useRovingGridFocus } from "./lib/useRovingGridFocus";
 export type {
   UseRovingGridFocusOptions,
