@@ -19,6 +19,11 @@ export function EngineDashboard() {
 
   return (
     <div className="p-8">
+      {/* Plain <a>, not next/link: the lobby is a different Multi-Zone app. */}
+      <a href="/" className="inline-block text-sm text-arcade-cyan hover:text-arcade-amber">
+        &larr; Back to Lobby
+      </a>
+
       <KeyboardHint />
       <div className="mt-2 grid gap-4 sm:grid-cols-2" role="grid">
         {gamesRoster.map((game, index) => (

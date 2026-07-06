@@ -20,15 +20,24 @@ export function MiniLeaderboard({ gameSlug }: { gameSlug: string }) {
     };
   }, [gameSlug]);
 
-  if (!entries || entries.length === 0) return null;
-
   return (
-    <ul className="mt-3 text-sm text-arcade-cyan/80">
-      {entries.map((entry, index) => (
-        <li key={entry.id}>
-          #{index + 1} {entry.playerName} — {entry.score}
-        </li>
-      ))}
-    </ul>
+    <>
+      {entries && entries.length > 0 && (
+        <ul className="mt-3 text-sm text-arcade-cyan/80">
+          {entries.map((entry, index) => (
+            <li key={entry.id}>
+              #{index + 1} {entry.playerName} — {entry.score}
+            </li>
+          ))}
+        </ul>
+      )}
+      {/* Plain <a>, not next/link: /scores is a different Multi-Zone app. */}
+      <a
+        href={`/scores?gameSlug=${gameSlug}`}
+        className="mt-2 inline-block text-sm text-arcade-cyan underline"
+      >
+        View full leaderboard
+      </a>
+    </>
   );
 }

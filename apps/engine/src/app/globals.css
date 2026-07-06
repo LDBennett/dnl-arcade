@@ -18,3 +18,15 @@ body {
     display: block;
   }
 }
+
+/* Touch D-pad: coarse-pointer (touch) devices only — the inverse of the
+   keyboard hint above. */
+.engine-touch-dpad {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .engine-touch-dpad {
+    display: grid;
+  }
+}

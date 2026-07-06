@@ -1,35 +1,50 @@
 import Link from "next/link";
 import { listTopScores } from "@/entities/score";
 
-// Local copy of scored games — only matrix-breach has scoring wired up so far.
-// Extend this list as more games get GameOverPanel/submit-run-score wiring.
-const SCORED_GAMES = [{ slug: "matrix-breach", title: "Matrix Breach" }];
+// Local copy of scored games — extend this list as more games get
+// GameOverPanel/submit-run-score wiring.
+const SCORED_GAMES = [
+  { slug: "matrix-breach", title: "Matrix Breach" },
+  { slug: "neon-snake", title: "Neon Snake" },
+];
 
-export async function LeaderboardBoard({
-  gameSlug,
-}: {
-  gameSlug?: string;
-}) {
+export async function LeaderboardBoard({ gameSlug }: { gameSlug?: string }) {
   const selectedSlug = gameSlug ?? SCORED_GAMES[0].slug;
   const entries = await listTopScores(selectedSlug, 10);
 
   return (
     <main className="p-8">
-      <h1 className="text-2xl text-arcade-green">High Scores</h1>
+      {/* Plain <a>, not next/link: the lobby is a different Multi-Zone app. */}
+      <a
+        href="/"
+        className="inline-block text-sm text-arcade-cyan hover:text-arcade-amber"
+      >
+        &larr; Back to Arcade
+      </a>
 
-      <nav className="mt-4 flex gap-3">
+      <h1 className="mt-2 text-2xl text-arcade-green">High Scores</h1>
+
+      <nav className="mt-4 flex flex-wrap gap-8">
         {SCORED_GAMES.map((game) => (
-          <Link
-            key={game.slug}
-            href={`/?gameSlug=${game.slug}`}
-            className={
-              game.slug === selectedSlug
-                ? "rounded border border-arcade-cyan px-3 py-1 text-arcade-cyan shadow-neon"
-                : "rounded border border-transparent px-3 py-1 text-arcade-cyan/60 hover:text-arcade-cyan"
-            }
-          >
-            {game.title}
-          </Link>
+          <div key={game.slug} className="flex flex-col items-center gap-2">
+            <Link
+              href={`/?gameSlug=${game.slug}`}
+              className={
+                game.slug === selectedSlug
+                  ? "rounded border border-arcade-cyan px-3 py-1 text-arcade-cyan shadow-neon"
+                  : "rounded border border-transparent px-3 py-1 text-arcade-cyan/60 hover:text-arcade-cyan"
+              }
+            >
+              {game.title}
+            </Link>
+            {/* Plain <a>, not next/link: apps/engine is a different Multi-Zone app. */}
+            <a
+              href={`/play/${game.slug}`}
+              className="text-sm text-arcade-cyan/60 underline hover:text-arcade-cyan"
+            >
+              Play
+            </a>
+          </div>
         ))}
       </nav>
 

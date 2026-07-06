@@ -2,11 +2,15 @@
 
 import { useSubmitRunScore } from "../model/useSubmitRunScore";
 
-export function ScoreSubmitForm({ gameSlug, score }: { gameSlug: string; score: number }) {
-  const { playerName, setPlayerName, status, result, error, submit } = useSubmitRunScore(
-    gameSlug,
-    score,
-  );
+export function ScoreSubmitForm({
+  gameSlug,
+  score,
+}: {
+  gameSlug: string;
+  score: number;
+}) {
+  const { playerName, setPlayerName, status, result, error, submit } =
+    useSubmitRunScore(gameSlug, score);
 
   if (status === "submitted" && result) {
     return (
@@ -25,6 +29,7 @@ export function ScoreSubmitForm({ gameSlug, score }: { gameSlug: string; score: 
       }}
     >
       <input
+        id="player_name"
         type="text"
         value={playerName}
         onChange={(event) => setPlayerName(event.target.value)}
@@ -34,7 +39,7 @@ export function ScoreSubmitForm({ gameSlug, score }: { gameSlug: string; score: 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="rounded border border-arcade-cyan px-3 py-1 text-sm text-arcade-cyan shadow-neon hover:bg-arcade-cyan hover:text-arcade-bg disabled:opacity-50"
+        className="rounded border border-arcade-cyan px-2 py-1 text-sm text-arcade-cyan shadow-neon hover:bg-arcade-cyan hover:text-arcade-bg disabled:opacity-50 h-auto"
       >
         {status === "submitting" ? "Saving..." : "Save Score"}
       </button>

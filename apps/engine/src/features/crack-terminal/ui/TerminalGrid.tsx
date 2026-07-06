@@ -1,7 +1,11 @@
 "use client";
 
 import { useMemo } from "react";
-import type { Attempt, Candidate, TerminalStatus } from "@/entities/hack-terminal";
+import type {
+  Attempt,
+  Candidate,
+  TerminalStatus,
+} from "@/entities/hack-terminal";
 import { useRovingGridFocus } from "@/shared";
 
 const COLUMNS = 4;
@@ -13,11 +17,19 @@ export interface TerminalGridProps {
   onSubmitGuess: (candidateId: string) => void;
 }
 
-export function TerminalGrid({ candidates, attempts, status, onSubmitGuess }: TerminalGridProps) {
+export function TerminalGrid({
+  candidates,
+  attempts,
+  status,
+  onSubmitGuess,
+}: TerminalGridProps) {
   const isInteractive = status === "in-progress";
-  const { focusedIndex, setFocusedIndex, registerItemRef, handleKeyDown } = useRovingGridFocus<
-    HTMLButtonElement
-  >({ itemCount: candidates.length, columns: COLUMNS, isActive: isInteractive });
+  const { focusedIndex, setFocusedIndex, registerItemRef, handleKeyDown } =
+    useRovingGridFocus<HTMLButtonElement>({
+      itemCount: candidates.length,
+      columns: COLUMNS,
+      isActive: isInteractive,
+    });
 
   const latestAttemptByCandidate = useMemo(() => {
     const map = new Map<string, Attempt>();
@@ -28,7 +40,7 @@ export function TerminalGrid({ candidates, attempts, status, onSubmitGuess }: Te
   }, [attempts]);
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4" role="grid">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 min-h-80" role="grid">
       {candidates.map((candidate, index) => {
         const attempt = latestAttemptByCandidate.get(candidate.id);
         return (

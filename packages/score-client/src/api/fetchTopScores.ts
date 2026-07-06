@@ -14,7 +14,7 @@ export async function fetchTopScores({
   const params = new URLSearchParams({ gameSlug, limit: String(limit) });
   const response = await fetch(`${baseUrl}/scores/api/scores?${params}`);
   if (!response.ok) {
-    throw new Error(`fetchTopScores failed: ${response.status}`);
+    return [];
   }
   const data = (await response.json()) as { entries: ScoreEntry[] };
   return data.entries;
