@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { listTopScores } from "@/entities/score";
+import { ZoneLink } from "@/shared";
 
 // Local copy of scored games — extend this list as more games get
 // GameOverPanel/submit-run-score wiring.
@@ -14,13 +15,12 @@ export async function LeaderboardBoard({ gameSlug }: { gameSlug?: string }) {
 
   return (
     <main className="p-8">
-      {/* Plain <a>, not next/link: the lobby is a different Multi-Zone app. */}
-      <a
+      <ZoneLink
         href="/"
         className="inline-block text-sm text-arcade-cyan hover:text-arcade-amber"
       >
         &larr; Back to Arcade
-      </a>
+      </ZoneLink>
 
       <h1 className="mt-2 text-2xl text-arcade-green">High Scores</h1>
 
@@ -37,13 +37,12 @@ export async function LeaderboardBoard({ gameSlug }: { gameSlug?: string }) {
             >
               {game.title}
             </Link>
-            {/* Plain <a>, not next/link: apps/engine is a different Multi-Zone app. */}
-            <a
+            <ZoneLink
               href={`/play/${game.slug}`}
               className="text-sm text-arcade-cyan/60 underline hover:text-arcade-cyan"
             >
               Play
-            </a>
+            </ZoneLink>
           </div>
         ))}
       </nav>
