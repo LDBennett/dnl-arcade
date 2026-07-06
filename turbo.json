@@ -9,7 +9,7 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "env": ["ENGINE_ORIGIN"]
+      "env": ["ENGINE_ORIGIN", "LEADERBOARD_ORIGIN", "DATABASE_URL", "DIRECT_URL"]
     },
     "lint": {
       "dependsOn": ["^build"]

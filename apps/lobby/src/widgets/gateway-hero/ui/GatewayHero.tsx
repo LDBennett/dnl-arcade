@@ -10,7 +10,7 @@ export function GatewayHero() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-8">
+    <section className="flex min-h-[70vh] flex-col items-center justify-center gap-6 p-8">
       <h1 className="animate-flicker text-2xl text-arcade-magenta drop-shadow-neon">
         RetroArcade
       </h1>
@@ -24,6 +24,6 @@ export function GatewayHero() {
       >
         Enter Arcade
       </a>
-    </main>
+    </section>
   );
 }

@@ -1,3 +1,4 @@
+import { calculateScore } from "./calculateScore";
 import { MAX_ATTEMPTS, SESSION_TIME_LIMIT_SEC } from "./constants";
 import { evaluateGuess } from "./evaluateGuess";
 import { generatePuzzle, type GeneratePuzzleOptions } from "./generatePuzzle";
@@ -48,7 +49,11 @@ export function hackTerminalReducer(
       const attempts = [...state.attempts, { candidateId: candidate.id, likeness, correct }];
 
       if (correct) {
-        return { ...state, attempts, status: "won" };
+        const score = calculateScore({
+          timeRemainingSec: state.timeRemainingSec,
+          attemptsRemaining: state.attemptsRemaining,
+        });
+        return { ...state, attempts, status: "won", score };
       }
 
       const attemptsRemaining = state.attemptsRemaining - 1;

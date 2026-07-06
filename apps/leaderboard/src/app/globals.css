@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "@dnl-arcade/ui/scanlines.css";
+
+body {
+  background-color: theme("colors.arcade.bg");
+  color: theme("colors.arcade.cyan");
+}

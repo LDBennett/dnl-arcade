@@ -22,6 +22,7 @@ export interface HackTerminalState {
   attempts: Attempt[];
   attemptsRemaining: number;
   timeRemainingSec: number;
+  score?: number;
 }
 
 export type HackTerminalAction =
