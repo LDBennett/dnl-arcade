@@ -3,4 +3,5 @@ export interface GameEntry {
   title: string;
   mechanic: string;
   technicalFocus: string;
+  built?: boolean;
 }

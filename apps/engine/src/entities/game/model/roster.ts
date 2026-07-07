@@ -18,17 +18,18 @@ export const gamesRoster: GameEntry[] = [
       "requestAnimationFrame loop management, thread boundary isolation, memory flushing on unmount.",
   },
   {
-    slug: "soundwave",
-    title: "SoundWave",
-    mechanic: "Synthwave rhythm simulator parsing live frequency inputs.",
-    technicalFocus:
-      "Real-time Web Audio scheduling, strict AudioContext node teardown.",
-  },
-  {
     slug: "combo-breaker",
     title: "ComboBreaker",
     mechanic: "Frame-accurate fighting game move input matching trainer.",
     technicalFocus:
       "Raw keyboard intercepts plus Gamepad API polling without blocking the shell.",
+  },
+  {
+    slug: "soundwave",
+    title: "SoundWave",
+    mechanic: "Synthwave rhythm simulator parsing live frequency inputs.",
+    technicalFocus:
+      "Real-time Web Audio scheduling, strict AudioContext node teardown.",
+    built: false,
   },
 ];
