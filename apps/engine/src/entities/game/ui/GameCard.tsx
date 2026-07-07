@@ -9,7 +9,7 @@ export interface GameCardProps extends GameEntry {
 }
 
 export const GameCard = forwardRef<HTMLAnchorElement, GameCardProps>(function GameCard(
-  { slug, title, mechanic, tabIndex, onFocus, onKeyDown },
+  { slug, title, mechanic, built = true, tabIndex, onFocus, onKeyDown },
   ref,
 ) {
   return (
@@ -19,10 +19,27 @@ export const GameCard = forwardRef<HTMLAnchorElement, GameCardProps>(function Ga
       tabIndex={tabIndex}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
-      className="block rounded border border-arcade-purple p-4 shadow-neon hover:bg-arcade-panel focus:outline-none focus:ring-2 focus:ring-arcade-amber"
+      aria-disabled={!built}
+      onClick={(event) => {
+        if (!built) event.preventDefault();
+      }}
+      className={
+        built
+          ? "block rounded border border-arcade-purple p-4 shadow-neon hover:bg-arcade-panel focus:outline-none focus:ring-2 focus:ring-arcade-amber"
+          : "block rounded border border-arcade-purple/30 p-4 grayscale opacity-60 focus:outline-none focus:ring-2 focus:ring-arcade-amber"
+      }
     >
-      <h2 className="text-arcade-amber">{title}</h2>
-      <p className="mt-2 text-sm text-arcade-cyan">{mechanic}</p>
+      <h2 className={built ? "text-arcade-amber" : "text-arcade-amber/60"}>
+        {title}
+        {!built && (
+          <span className="ml-2 rounded border border-arcade-purple/50 px-1.5 py-0.5 text-[0.6rem] text-arcade-purple">
+            COMING SOON
+          </span>
+        )}
+      </h2>
+      <p className={built ? "mt-2 text-sm text-arcade-cyan" : "mt-2 text-sm text-arcade-cyan/60"}>
+        {mechanic}
+      </p>
     </Link>
   );
 });

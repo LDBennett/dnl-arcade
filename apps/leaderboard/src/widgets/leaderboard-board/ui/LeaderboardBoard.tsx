@@ -7,6 +7,7 @@ import { ZoneLink } from "@/shared";
 const SCORED_GAMES = [
   { slug: "matrix-breach", title: "Matrix Breach" },
   { slug: "neon-snake", title: "Neon Snake" },
+  { slug: "combo-breaker", title: "ComboBreaker" },
 ];
 
 export async function LeaderboardBoard({ gameSlug }: { gameSlug?: string }) {
