@@ -1,6 +1,6 @@
 import { fetchTopScores } from "@dnl-arcade/score-client";
 import { ScoreTable } from "@/entities/score";
-import { LEADERBOARD_ORIGIN } from "@/shared";
+import { LEADERBOARD_ORIGIN, ZoneLink } from "@/shared";
 
 // Hardcoded to matrix-breach for now — the only game with scoring wired up.
 // Extend once more games get GameOverPanel/submit-run-score wiring.
@@ -19,10 +19,9 @@ export async function LeaderboardPanel() {
       <div className="mt-2">
         <ScoreTable entries={entries} />
       </div>
-      {/* Plain <a>, not next/link: /scores is a different Multi-Zone app. */}
-      <a href="/scores" className="mt-2 inline-block text-sm text-arcade-cyan underline">
+      <ZoneLink href="/scores" className="mt-2 inline-block text-sm text-arcade-cyan underline">
         View full leaderboard
-      </a>
+      </ZoneLink>
     </section>
   );
 }

@@ -1,1 +1,1 @@
-export { ZoneLink } from "./ui/ZoneLink";
+export { ZoneLink } from "@dnl-arcade/zone-link";

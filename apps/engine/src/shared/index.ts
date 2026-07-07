@@ -1,3 +1,4 @@
+export { ZoneLink } from "@dnl-arcade/zone-link";
 export { BackToMenuLink } from "./ui/BackToMenuLink";
 export { GameOverPanel } from "./ui/GameOverPanel";
 export { KeyboardHint } from "./ui/KeyboardHint";

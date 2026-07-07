@@ -23,6 +23,9 @@ importers:
       '@dnl-arcade/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@dnl-arcade/zone-link':
+        specifier: workspace:*
+        version: link:../../packages/zone-link
       next:
         specifier: ^15.1.0
         version: 15.5.20(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -72,6 +75,9 @@ importers:
       '@dnl-arcade/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@dnl-arcade/zone-link':
+        specifier: workspace:*
+        version: link:../../packages/zone-link
       '@prisma/client':
         specifier: ^6.1.0
         version: 6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)
@@ -127,6 +133,9 @@ importers:
       '@dnl-arcade/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@dnl-arcade/zone-link':
+        specifier: workspace:*
+        version: link:../../packages/zone-link
       next:
         specifier: ^15.1.0
         version: 15.5.20(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -180,6 +189,19 @@ importers:
         specifier: ^3.4.14
         version: 3.4.19
     devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
+  packages/zone-link:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.2.7
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.17
       typescript:
         specifier: ^5.7.0
         version: 5.9.3

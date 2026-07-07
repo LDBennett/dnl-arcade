@@ -11,6 +11,7 @@
   "dependencies": {
     "@dnl-arcade/score-client": "workspace:*",
     "@dnl-arcade/ui": "workspace:*",
+    "@dnl-arcade/zone-link": "workspace:*",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

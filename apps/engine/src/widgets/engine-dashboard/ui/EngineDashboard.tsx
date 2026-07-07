@@ -1,7 +1,7 @@
 "use client";
 
 import { GameCard, gamesRoster } from "@/entities/game";
-import { KeyboardHint, useEscapeKey, useRovingGridFocus } from "@/shared";
+import { KeyboardHint, ZoneLink, useEscapeKey, useRovingGridFocus } from "@/shared";
 
 const COLUMNS = 2;
 
@@ -19,10 +19,9 @@ export function EngineDashboard() {
 
   return (
     <div className="p-8">
-      {/* Plain <a>, not next/link: the lobby is a different Multi-Zone app. */}
-      <a href="/" className="inline-block text-sm text-arcade-cyan hover:text-arcade-amber">
+      <ZoneLink href="/" className="inline-block text-sm text-arcade-cyan hover:text-arcade-amber">
         &larr; Back to Lobby
-      </a>
+      </ZoneLink>
 
       <KeyboardHint />
       <div className="mt-2 grid gap-4 sm:grid-cols-2" role="grid">

@@ -12,6 +12,7 @@
   "dependencies": {
     "@dnl-arcade/score-client": "workspace:*",
     "@dnl-arcade/ui": "workspace:*",
+    "@dnl-arcade/zone-link": "workspace:*",
     "@prisma/client": "^6.1.0",
     "next": "^15.1.0",
     "react": "^19.0.0",

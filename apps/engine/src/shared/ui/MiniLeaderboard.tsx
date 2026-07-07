@@ -1,6 +1,7 @@
 "use client";
 
 import { fetchTopScores, type ScoreEntry } from "@dnl-arcade/score-client";
+import { ZoneLink } from "@dnl-arcade/zone-link";
 import { useEffect, useState } from "react";
 
 export function MiniLeaderboard({ gameSlug }: { gameSlug: string }) {
@@ -31,13 +32,12 @@ export function MiniLeaderboard({ gameSlug }: { gameSlug: string }) {
           ))}
         </ul>
       )}
-      {/* Plain <a>, not next/link: /scores is a different Multi-Zone app. */}
-      <a
+      <ZoneLink
         href={`/scores?gameSlug=${gameSlug}`}
         className="mt-2 inline-block text-sm text-arcade-cyan underline"
       >
         View full leaderboard
-      </a>
+      </ZoneLink>
     </>
   );
 }
