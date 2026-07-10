@@ -71,9 +71,13 @@ export function useSnakeSession(): UseSnakeSessionResult {
     function loop(timestamp: number) {
       if (lastTimestamp !== null) {
         accumulatedMs += timestamp - lastTimestamp;
-        if (accumulatedMs >= stateRef.current.tickMs) {
+        const tickMs = stateRef.current.tickMs;
+        if (accumulatedMs >= tickMs) {
           dispatch({ type: "TICK" });
-          accumulatedMs = 0;
+          // Carry the remainder so ticks don't quantize up to the next
+          // animation frame, but cap it at one tick's worth — a long frame
+          // (hidden tab, GC pause) shouldn't burst-fire catch-up ticks.
+          accumulatedMs = Math.min(accumulatedMs - tickMs, tickMs);
         }
       }
       lastTimestamp = timestamp;

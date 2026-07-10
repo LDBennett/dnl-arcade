@@ -30,6 +30,5 @@ export const gamesRoster: GameEntry[] = [
     mechanic: "Synthwave rhythm simulator parsing live frequency inputs.",
     technicalFocus:
       "Real-time Web Audio scheduling, strict AudioContext node teardown.",
-    built: false,
   },
 ];

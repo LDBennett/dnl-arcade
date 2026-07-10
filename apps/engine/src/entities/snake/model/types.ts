@@ -10,7 +10,10 @@ export interface SnakeState {
   status: SnakeStatus;
   snake: Point[];
   direction: Direction;
-  nextDirection: Direction;
+  /** Pending turns, applied one per tick. Depth-limited (see
+   *  DIRECTION_QUEUE_SIZE) so quick two-key maneuvers survive a slow tick
+   *  instead of overwriting each other. */
+  directionQueue: Direction[];
   food: Point;
   score: number;
   tickMs: number;

@@ -8,6 +8,7 @@ const SCORED_GAMES = [
   { slug: "matrix-breach", title: "Matrix Breach" },
   { slug: "neon-snake", title: "Neon Snake" },
   { slug: "combo-breaker", title: "ComboBreaker" },
+  { slug: "soundwave", title: "SoundWave" },
 ];
 
 export async function LeaderboardBoard({ gameSlug }: { gameSlug?: string }) {
