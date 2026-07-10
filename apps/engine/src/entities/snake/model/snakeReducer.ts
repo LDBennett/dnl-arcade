@@ -1,4 +1,11 @@
-import { GRID_HEIGHT, GRID_WIDTH, MIN_TICK_MS, POINTS_PER_FOOD, TICK_MS_STEP } from "./constants";
+import {
+  DIRECTION_QUEUE_SIZE,
+  GRID_HEIGHT,
+  GRID_WIDTH,
+  MIN_TICK_MS,
+  POINTS_PER_FOOD,
+  TICK_MS_STEP,
+} from "./constants";
 import { createInitialSnakeState } from "./createSnakeState";
 import { placeFood } from "./placeFood";
 import type { Direction, Point, SnakeAction, SnakeState } from "./types";
@@ -27,11 +34,23 @@ export function snakeReducer(state: SnakeState, action: SnakeAction): SnakeState
   switch (action.type) {
     case "SET_DIRECTION": {
       if (state.status === "over") return state;
-      if (OPPOSITE[action.direction] === state.direction) return state;
+
       if (state.status === "ready") {
-        return { ...state, status: "in-progress", nextDirection: action.direction };
+        // Any non-reversing direction key starts a run, even the current
+        // heading (which queues nothing).
+        if (OPPOSITE[action.direction] === state.direction) return state;
+        const directionQueue = action.direction === state.direction ? [] : [action.direction];
+        return { ...state, status: "in-progress", directionQueue };
       }
-      return { ...state, nextDirection: action.direction };
+
+      // Validate against the heading the snake will have when this input
+      // takes effect — the last queued turn, not the committed direction —
+      // so a fast zigzag (up then left while moving right) queues both turns
+      // instead of rejecting the second as a "reversal".
+      const effective = state.directionQueue[state.directionQueue.length - 1] ?? state.direction;
+      if (action.direction === effective || OPPOSITE[action.direction] === effective) return state;
+      if (state.directionQueue.length >= DIRECTION_QUEUE_SIZE) return state;
+      return { ...state, directionQueue: [...state.directionQueue, action.direction] };
     }
 
     case "START": {
@@ -42,7 +61,8 @@ export function snakeReducer(state: SnakeState, action: SnakeAction): SnakeState
     case "TICK": {
       if (state.status !== "in-progress") return state;
 
-      const direction = state.nextDirection;
+      const [queuedDirection, ...restQueue] = state.directionQueue;
+      const direction = queuedDirection ?? state.direction;
       const newHead = movePoint(state.snake[0], direction);
 
       const hitWall =
@@ -63,13 +83,14 @@ export function snakeReducer(state: SnakeState, action: SnakeAction): SnakeState
         : [newHead, ...state.snake.slice(0, -1)];
 
       if (!ateFood) {
-        return { ...state, snake: newSnake, direction };
+        return { ...state, snake: newSnake, direction, directionQueue: restQueue };
       }
 
       return {
         ...state,
         snake: newSnake,
         direction,
+        directionQueue: restQueue,
         food: placeFood(newSnake),
         score: state.score + POINTS_PER_FOOD,
         tickMs: Math.max(MIN_TICK_MS, state.tickMs - TICK_MS_STEP),
